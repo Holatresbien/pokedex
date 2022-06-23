@@ -4,12 +4,6 @@ import Layout from '../comps/Layout'
 import NextNProgress from 'nextjs-progressbar'
 import Head from 'next/head'
 
-const customId = 'global'
-
-function notifyComps(msg: any, status=0){
-  return ""
-}
-
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
     <Head>
@@ -27,7 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     />
     <Layout>
       <Component
-        notify={notifyComps}
         {...pageProps}
       />
     </Layout>
