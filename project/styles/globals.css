@@ -107,3 +107,7 @@ a {
 .swal2-modal{
     background:#2D3142 !important
 }
+
+.infinite-scroll-component__outerdiv{
+  width:100%;
+}
