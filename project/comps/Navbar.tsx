@@ -16,12 +16,12 @@ const Navbar = () => {
       {
           name: "Pokémon List",
           url: "/pokelist",
-          icon: <Icon className={classIcon} icon="arcticons:pokemon-unite" />
+          icon: <Icon className={classIcon + " text-amber-300"} icon="arcticons:pokemon-unite" />
       },
       {
           name: "My Pokémon",
           url: "/mypokemon",
-          icon: <Icon className={classIcon} icon="ic:twotone-catching-pokemon" />
+          icon: <Icon className={classIcon + " text-red-500"} icon="ic:twotone-catching-pokemon" />
       }
     ];
 
@@ -54,7 +54,7 @@ const Navbar = () => {
                                     <Link
                                         href={item.url}>
                                         <div onClick={ () => setOpenNavbar(!openNavbar) } className="px-3 bg-soft-gray lg:bg-transparent mt-1 cursor-pointer">
-                                            <button className={classNames("hover:border-b-2 border-gray-400 my-1 py-2 font-bold text-sm lg:text-md uppercase leading-5 text-gray-300 font-bold transition-colors duration-200 transform text-gray-300 hover:text-amber-300 lg:mx-4 lg:my-0", router.pathname===item.url ? "text-amber-500" : "")} >
+                                            <button className={classNames("hover:border-b-2 border-gray-400 my-1 py-2 font-bold text-sm lg:text-md uppercase leading-5 text-gray-300 font-bold transition-colors duration-200 transform text-gray-300 hover:text-amber-300 lg:mx-4 lg:my-0", router.pathname===item.url ? "text-amber-400" : "")} >
                                                 {item.icon} {item.name}
                                             </button>
                                             <Icon className="text-gray-400 text-lg float-right mt-3 lg:hidden" icon="ic:baseline-navigate-next" />
@@ -65,12 +65,14 @@ const Navbar = () => {
                         </div>
 
                         <div className="flex items-center py-2 -mx-1 lg:mx-0">
+                          <Link href="/pokedex">
                             <button className="flex-1">
-                                <div className="button button-cust">
-                                    <div className="translate"></div>
-                                    <a>FIND ONE</a>
-                                </div>
-                            </button>
+                                  <div className="button button-cust">
+                                      <div className="translate"></div>
+                                      <a>FIND ONE</a>
+                                  </div>
+                              </button>
+                          </Link>
                         </div>
                     </div>
                 </div>
