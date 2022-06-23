@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+body {
+  /* background: #272621; */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('/images/bg.jpg');
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.bg-dark-gray{
+  background: rgba(27, 26, 21, 0.6);
+}
+
+.bg-soft-gray{
+  background: #24221d;
+}
+
+/* Heading */
+
+h1 {
+  font-size: 1.5em;
+  text-align: center;
+  padding: 70px 0 0 0;
+  color: #EF8354;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+span {
+  border: 2px solid #4F5D75;
+  padding: 10px;
+}
+
+
+/* Layout Styling */
+#container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 0 150px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Button Styles */
+.button {
+  display: inline-flex;
+  height: 40px;
+  width: 150px;
+  border: 2px solid #BFC0C0;
+  margin: 20px 20px 20px 20px;
+  color: #BFC0C0;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: .8em;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+a {
+  color: #BFC0C0;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* Fifth Button */
+
+.button-cust {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button-cust a {
+  position: relative;
+  transition: all .45s ease-Out;
+}
+
+.translate {
+  transform: rotate(50deg);
+  width: 100%;
+  height: 250%;
+  left: -200px;
+  top: -30px;
+  background: #BFC0C0;
+  position: absolute;
+  transition: all .3s ease-Out;
+}
+
+.button-cust:hover .translate {
+  left: 0;
+}
+
+.button-cust:hover a {
+  color: #2D3142;
+}
+
+.scroll-hidden::-webkit-scrollbar {
+    height: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.swal2-modal{
+    background:#2D3142 !important
+}
