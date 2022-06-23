@@ -34,7 +34,7 @@ const index = ({data} : {data:any}) => {
           dataLength={pokemons.length}
           next={fetchMoreData}
           hasMore={true}
-          loader={<Loading />}
+          loader={pokemons.length<data.count ? <Loading /> : <></>}
         >
         <div className="w-full bg-gray-200 grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12">
           {pokemons.map((item:any, index:any) => {
@@ -55,6 +55,7 @@ const index = ({data} : {data:any}) => {
                   </Link>
           })}
           </div>
+        <div className="text-xs float-right text-gray-200">Showing Pokemons: <b className="text-amber-300">{pokemons.length}</b> / {data.count}</div>
         </InfiniteScroll>
     </>
   )
