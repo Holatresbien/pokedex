@@ -15,7 +15,7 @@ const Navbar = () => {
     const menubar = [
       {
           name: "Pokémon List",
-          url: "/pokelist",
+          url: "/",
           icon: <Icon className={classIcon + " text-amber-300"} icon="arcticons:pokemon-unite" />
       },
       {
@@ -31,7 +31,9 @@ const Navbar = () => {
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
+                          <Link href="/">
                             <button className="text-2xl font-bold transition-colors duration-200 transform lg:text-3xl text-gray-400 hover:text-gray-300 uppercase">Pokédex</button>
+                          </Link>
                         </div>
 
                         <div className="flex lg:hidden">
@@ -66,7 +68,7 @@ const Navbar = () => {
 
                         <div className="flex items-center py-2 -mx-1 lg:mx-0">
                           <Link href="/pokedex">
-                            <button className="flex-1">
+                            <button onClick={ () => setOpenNavbar(!openNavbar) } className="flex-1">
                                   <div className="button button-cust">
                                       <div className="translate"></div>
                                       <a>FIND ONE</a>
