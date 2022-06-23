@@ -42,7 +42,7 @@ const index = ({data} : {data:any}) => {
               pokeCode = pokeCode.replace('/', '');
               return <Link
                    key={index}
-                   href={`/pokedex?pokecode=${pokeCode}`}>
+                   href={`/pokedex?pokename=${item.name}`}>
                       <div className="cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-700 hover:text-gray-200 rounded duration-300">
                         <Image
                           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeCode}.png`}
