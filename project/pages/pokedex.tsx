@@ -297,7 +297,7 @@ const pokedex = ({data} : {data:any}) => {
 export async function getServerSideProps({query} : {query:any}) {
   let pokename = query.pokename ? query.pokename : 'ditto';
   // Fetch data from external API
-  const url = process.env.APP_POKE_DET!==undefined ? process.env.APP_POKE_DET+pokename : ''
+  const url = process.env.APP_POKE_DET!==undefined ? process.env.APP_POKE_DET+'/'+pokename : ''
   const res = await fetch(url)
   const data = await res.json()
   // Pass data to the page via props

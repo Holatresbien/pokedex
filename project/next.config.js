@@ -5,7 +5,6 @@ module.exports = {
     domains: ['i.ibb.co', 'raw.githubusercontent.com']
   },
   env: {
-    APP_POKE_URL: process.env.APP_POKE_URL,
-    APP_POKE_DET: process.env.APP_POKE_DET
+    APP_POKE_URL: process.env.APP_POKE_URL
   }
 }

@@ -20,7 +20,7 @@ const index = ({data} : {data:any}) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const url = process.env.APP_POKE_URL!==undefined ? process.env.APP_POKE_URL : ''
+  const url = process.env.APP_POKE_URL!==undefined ? process.env.APP_POKE_URL+'?limit=100000&offset=0' : ''
   const res = await fetch(url)
   const data = await res.json()
   // Pass data to the page via props
