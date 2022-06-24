@@ -11,7 +11,7 @@ const mypokemon = () => {
   let [myPokemon, setMyPokemon] : any = useState([]);
 
   useEffect(() => {
-    const listPokemon : any = localStorage.getItem('myPokemon');
+    const listPokemon : any = localStorage.getItem('myPokemon') ? localStorage.getItem('myPokemon') : `[]`;
     setMyPokemon(JSON.parse(listPokemon));
   }, [])
 
@@ -62,14 +62,16 @@ const mypokemon = () => {
       <Head>
         <title>Pokémon List</title>
       </Head>
-      { myPokemon.length>0
+      { myPokemon?.length>0
         ? <CardBoxPokemon
             pokemons={myPokemon}
-            allPokemons={myPokemon.length}
+            owned={myPokemon?.length ? myPokemon.length : 0}
             delete={true}
             removePokemon={removePokemon}
           />
-        : <Loading/> }
+        : <>
+          <span className="text-gray-200">Please catch at least 1 Pokemon</span>
+        </> }
     </>
   )
 }

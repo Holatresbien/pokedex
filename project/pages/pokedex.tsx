@@ -96,7 +96,7 @@ const pokedex = ({data} : {data:any}) => {
   let [myPokemon, setMyPokemon] : any = useState([]);
 
   useEffect(() => {
-    const listPokemon : any = localStorage.getItem('myPokemon');
+    const listPokemon : any = localStorage.getItem('myPokemon') ? localStorage.getItem('myPokemon') : `[]`;
     setMyPokemon(JSON.parse(listPokemon));
   }, [])
 
@@ -106,8 +106,8 @@ const pokedex = ({data} : {data:any}) => {
       url : `https://pokeapi.co/api/v2/pokemon/${data.id}/`,
       nickname: dataNickname
     }
-    const idx : any = myPokemon.findIndex((p:any) => p.name === data.name);
-    if(myPokemon.length > 0 && idx >= 0){
+    const idx : any = myPokemon?.length > 0 ? myPokemon?.findIndex((p:any) => p.name === data.name) : -1;
+    if(idx >= 0){
       myPokemon[idx] = dataPokemon;
     }else{
       myPokemon = [...myPokemon, dataPokemon];

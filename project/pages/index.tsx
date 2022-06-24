@@ -6,7 +6,7 @@ const index = ({data} : {data:any}) => {
   let [myPokemon, setMyPokemon] : any = useState([]);
 
   useEffect(() => {
-    const listPokemon : any = localStorage.getItem('myPokemon');
+    const listPokemon : any = localStorage.getItem('myPokemon') ? localStorage.getItem('myPokemon') : `[]`;
     setMyPokemon(JSON.parse(listPokemon));
   }, [])
 
@@ -15,7 +15,7 @@ const index = ({data} : {data:any}) => {
       <Head>
         <title>Pokémon List</title>
       </Head>
-      <CardBoxInfiniteScroll data={data.results} owned={myPokemon.length} />
+      <CardBoxInfiniteScroll data={data.results} owned={myPokemon?.length ? myPokemon.length : 0} />
     </>
   )
 }

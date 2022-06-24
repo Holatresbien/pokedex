@@ -13,8 +13,8 @@ const CardBoxPokemon = (props:any) => {
                         <small className="float-left p-1 bg-gray-600 text-gray-200 rounded-tl-lg rounded-br-lg">#Pokemon</small>
                     </div>
                     <div className="text-sm capitalize text-amber-400 p-3 pt-10 space-y-2">
-                        {props.owned !== undefined && <div>&nbsp;<span className="float-left">OWNED</span><span className="float-right text-amber-200">{props.owned}</span></div>}
-                        <div>&nbsp;<span className="float-left">ALL<Icon className="float-left mt-0.5 mr-2" icon="ic:twotone-catching-pokemon" /></span><span className="float-right text-amber-200">{props.allPokemons}</span></div>
+                        <div>&nbsp;<span className="float-left">OWNED</span><span className="float-right text-amber-200">{props.owned}</span></div>
+                        {props.allPokemons !== undefined && <div>&nbsp;<span className="float-left">ALL<Icon className="float-left mt-0.5 mr-2" icon="ic:twotone-catching-pokemon" /></span><span className="float-right text-amber-200">{props.allPokemons}</span></div>}
                     </div>
                 </div>
                 {props.pokemons.map((item:any, index:any) => {
