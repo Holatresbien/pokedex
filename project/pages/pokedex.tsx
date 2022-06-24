@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { Icon } from '@iconify/react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-
+import { PokemonContext } from '../context/Pokemon';
 
 const pokedex = ({data} : {data:any}) => {
   const MySwal = withReactContent(Swal);
@@ -93,12 +93,7 @@ const pokedex = ({data} : {data:any}) => {
     }
   ]
 
-  let [myPokemon, setMyPokemon] : any = useState([]);
-
-  useEffect(() => {
-    const listPokemon : any = localStorage.getItem('myPokemon') ? localStorage.getItem('myPokemon') : `[]`;
-    setMyPokemon(JSON.parse(listPokemon));
-  }, [])
+  const { state, setPokemon } : any = useContext(PokemonContext);
 
   function saveNickname(dataNickname:any){
     const dataPokemon : any = {
@@ -106,13 +101,20 @@ const pokedex = ({data} : {data:any}) => {
       url : `https://pokeapi.co/api/v2/pokemon/${data.id}/`,
       nickname: dataNickname
     }
-    const idx : any = myPokemon?.length > 0 ? myPokemon?.findIndex((p:any) => p.name === data.name) : -1;
-    if(idx >= 0){
-      myPokemon[idx] = dataPokemon;
-    }else{
-      myPokemon = [...myPokemon, dataPokemon];
+    let newPokemons : any = [];
+    let isFound : any = 0;
+    Object.keys(state).map((index:any) => {
+      let newState = state[index];
+      if(state[index].name === data.name){
+        newState = dataPokemon;
+        isFound++;
+      }
+      newPokemons = [...newPokemons, newState];
+    })
+    if(!isFound){
+      newPokemons = [...newPokemons, dataPokemon];
     }
-    localStorage.setItem('myPokemon', JSON.stringify(myPokemon));
+    setPokemon(newPokemons);
   }
 
   const saveButton : any = <button
@@ -185,7 +187,14 @@ const pokedex = ({data} : {data:any}) => {
         })
       })
   }}>
-    <Icon className="text-gray-200 float-left mr-1 mt-0.5" icon="tabler:pokeball" /> CATCH
+    
+    { Object.keys(state).findIndex((index:any) => state[index].name === data.name) < 0
+    ? <>
+      <Icon className="text-gray-200 float-left mr-1 mt-0.5" icon="tabler:pokeball" /> CATCH
+    </>
+    : <>
+      <Icon className="text-amber-200 float-left mr-1 mt-0.5" icon="ic:baseline-catching-pokemon" /> <i className="text-amber-200">RE-CATCH</i>
+    </>}
   </button>
 
   return (
@@ -193,6 +202,7 @@ const pokedex = ({data} : {data:any}) => {
       <Head>
         <title>Pokémon - {data.name}</title>
       </Head>
+      <h1 className="font-medium text-amber-300">Detail Pokémon - <b className="capitalize">{data.name}</b></h1>
       <div className="w-full">
         <div className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
           <div className="px-6">

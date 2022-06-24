@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Layout from '../comps/Layout'
 import NextNProgress from 'nextjs-progressbar'
 import Head from 'next/head'
+import PokemonContextProvider from '../context/Pokemon'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
@@ -19,11 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       height={3}
       showOnShallow={true}
     />
-    <Layout>
-      <Component
-        {...pageProps}
-      />
-    </Layout>
+    <PokemonContextProvider>
+      <Layout>
+        <Component
+          {...pageProps}
+        />
+      </Layout>
+    </PokemonContextProvider>
   </>
 }
 

@@ -7,8 +7,8 @@ import { Icon } from '@iconify/react';
 const CardBoxPokemon = (props:any) => {
     return (
         <div className="w-full">
-            <div className="w-full grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 !space-x-3 !space-y-3">
-                <div className="mt-3 ml-3 border-t border-b border-gray-600 bg-gray-900 rounded-lg">
+            <div className="w-full place-content-center grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-3">
+                <div className="border-t border-b border-gray-600 bg-gray-900 rounded-lg">
                     <div className="">
                         <small className="float-left p-1 bg-gray-600 text-gray-200 rounded-tl-lg rounded-br-lg">#Pokemon</small>
                     </div>
@@ -17,7 +17,8 @@ const CardBoxPokemon = (props:any) => {
                         {props.allPokemons !== undefined && <div>&nbsp;<span className="float-left">ALL<Icon className="float-left mt-0.5 mr-2" icon="ic:twotone-catching-pokemon" /></span><span className="float-right text-amber-200">{props.allPokemons}</span></div>}
                     </div>
                 </div>
-                {props.pokemons.map((item:any, index:any) => {
+                {Object.keys(props.pokemons).map((index:any) => {
+                    const item = props.pokemons[index];
                     let pokeCode = item.url.replace('https://pokeapi.co/api/v2/pokemon/','');
                     pokeCode = pokeCode.replace('/', '');
                     return <Link
@@ -49,7 +50,7 @@ const CardBoxPokemon = (props:any) => {
                 })}
             </div>
             <div className="text-xs float-right text-gray-200">
-                Showing Pokemons: <b className="text-amber-300">{props.pokemons.length}</b> / {props.allPokemons}
+                Showing Pokemons: <b className="text-amber-300">{Object.keys(props.pokemons).length}</b>{props.allPokemons && `/ ${props.allPokemons}`}
             </div>
         </div>
     )

@@ -32,7 +32,11 @@ const Navbar = () => {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
                           <Link href="/">
-                            <button className="text-2xl font-bold transition-colors duration-200 transform lg:text-3xl text-gray-400 hover:text-gray-300 uppercase">Pokédex</button>
+                            <button
+                                onClick={ () => setOpenNavbar(true) }
+                                className="text-2xl font-bold transition-colors duration-200 transform lg:text-3xl text-gray-400 hover:text-gray-300 uppercase">
+                                Pokédex
+                            </button>
                           </Link>
                         </div>
 

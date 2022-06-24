@@ -1,34 +1,30 @@
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import CardBoxPokemon from '../comps/cards/CardBoxPokemon';
-import Loading from '../comps/Loading';
 
 import { Icon } from '@iconify/react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-const mypokemon = () => {
-  let [myPokemon, setMyPokemon] : any = useState([]);
+import { PokemonContext } from '../context/Pokemon';
 
-  useEffect(() => {
-    const listPokemon : any = localStorage.getItem('myPokemon') ? localStorage.getItem('myPokemon') : `[]`;
-    setMyPokemon(JSON.parse(listPokemon));
-  }, [])
+const mypokemon = () => {
+  const { state, setPokemon } : any = useContext(PokemonContext);
 
   const MySwal = withReactContent(Swal);
 
   function deletePokemon(pokeName : any){
-      const pokemons = myPokemon;
-      const idx : any = pokemons.findIndex((p:any) => p.name === pokeName);
-      if(pokemons.length > 0 && idx >= 0){
-          pokemons.splice(idx, 1);
-      }
-      setMyPokemon(pokemons);
-      localStorage.setItem('myPokemon', JSON.stringify(pokemons));
+      const pokemons = state;
+      let newPokemons : any = []
+      Object.keys(pokemons).map((index:any) => {
+        if(pokemons[index].name !== pokeName){
+          newPokemons = [...newPokemons, pokemons[index]];
+        }
+      })
+      setPokemon(newPokemons);
   }
 
   function removePokemon(poke : any){
-      setMyPokemon([]);
       MySwal.fire({
           title: <span className="text-gray-200">RELEASE</span>,
           icon: 'error',
@@ -51,8 +47,6 @@ const mypokemon = () => {
                   `<span class="text-gray-300">${poke.nickname} has been removed!</span>`,
                   'success'
               )
-          }else{
-            setMyPokemon(myPokemon);
           }
       })
   }
@@ -62,10 +56,11 @@ const mypokemon = () => {
       <Head>
         <title>Pokémon List</title>
       </Head>
-      { myPokemon?.length>0
+      <h1 className="font-medium text-amber-300 mb-5">Captured Pokémon</h1>
+      { Object.keys(state).length>0
         ? <CardBoxPokemon
-            pokemons={myPokemon}
-            owned={myPokemon?.length ? myPokemon.length : 0}
+            pokemons={state}
+            owned={Object.keys(state).length ? Object.keys(state).length : 0}
             delete={true}
             removePokemon={removePokemon}
           />

@@ -1,21 +1,19 @@
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import CardBoxInfiniteScroll from '../comps/cards/CardBoxInfiniteScroll';
 
-const index = ({data} : {data:any}) => {
-  let [myPokemon, setMyPokemon] : any = useState([]);
+import { PokemonContext } from '../context/Pokemon';
 
-  useEffect(() => {
-    const listPokemon : any = localStorage.getItem('myPokemon') ? localStorage.getItem('myPokemon') : `[]`;
-    setMyPokemon(JSON.parse(listPokemon));
-  }, [])
+const index = ({data} : {data:any}) => {
+  const { state } : any = useContext(PokemonContext);
 
   return (
     <>
       <Head>
         <title>Pokémon List</title>
       </Head>
-      <CardBoxInfiniteScroll data={data.results} owned={myPokemon?.length ? myPokemon.length : 0} />
+      <h1 className="font-medium text-amber-300 mb-5">All - Pokémon List</h1>
+      <CardBoxInfiniteScroll data={data.results} owned={Object.keys(state).length ? Object.keys(state).length : 0} />
     </>
   )
 }
