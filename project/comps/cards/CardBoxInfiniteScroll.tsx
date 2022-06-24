@@ -3,8 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from '../Loading';
 import CardBoxPokemon from './CardBoxPokemon';
 
-
-const BoxPokemon = (props:any) => {
+const CardBoxInfiniteScroll = (props:any) => {
     let [ pokemons, setPokemons ] : any = useState([]);
 
     function showDataPokemons(){
@@ -47,4 +46,4 @@ const BoxPokemon = (props:any) => {
     )
 }
 
-export default BoxPokemon
+export default CardBoxInfiniteScroll
