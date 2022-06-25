@@ -12,7 +12,7 @@ const index = ({data} : {data:any}) => {
       <Head>
         <title>Pokémon List</title>
       </Head>
-      <h1 className="font-medium text-amber-300 mb-5">All - Pokémon List</h1>
+      <h1 className="font-medium text-amber-300 my-5">All - Pokémon List</h1>
       <CardBoxInfiniteScroll data={data.results} owned={Object.keys(state).length ? Object.keys(state).length : 0} />
     </>
   )

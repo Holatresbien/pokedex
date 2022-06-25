@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 
-export const PokemonContext = createContext([]);
+export const PokemonContext : any = createContext([]);
 
 const initialState:any = [];
 
@@ -30,7 +30,7 @@ const PokemonContextProvider = ({children} : {children: any}) => {
     };
 
     return (
-        <PokemonContext.Provider value={{ state, setPokemon }}>
+        <PokemonContext.Provider value={{state, setPokemon}}>
             {children}
         </PokemonContext.Provider>
     )

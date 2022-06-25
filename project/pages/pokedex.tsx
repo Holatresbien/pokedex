@@ -202,7 +202,7 @@ const pokedex = ({data} : {data:any}) => {
       <Head>
         <title>Pokémon - {data.name}</title>
       </Head>
-      <h1 className="font-medium text-amber-300">Detail Pokémon - <b className="capitalize">{data.name}</b></h1>
+      <h1 className="font-medium text-amber-300 mt-5">Detail Pokémon - <b className="capitalize">{data.name}</b></h1>
       <div className="w-full">
         <div className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
           <div className="px-6">
